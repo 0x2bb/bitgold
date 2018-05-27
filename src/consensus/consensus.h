@@ -16,7 +16,7 @@ static const unsigned int MAX_BLOCK_WEIGHT = MAX_BLOCK_SERIALIZED_SIZE;
 /** The maximum allowed number of signature check operations in a block (network rule) */
 static const int64_t MAX_BLOCK_SIGOPS_COST = (MAX_BLOCK_WEIGHT/50);
 /** Coinbase transaction outputs can only be spent after this number of new blocks (network rule) */
-static const int COINBASE_MATURITY = 100;
+static const int COINBASE_MATURITY = 25;
 /** Scale factor for witness */
 static const int WITNESS_SCALE_FACTOR = 4;
 /** For a minimal tx, 60 is the lower bound for the size of a valid serialized CTransaction*/
