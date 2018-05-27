@@ -57,8 +57,8 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "DJIA 31/Nov/2017 closed at 23377.24";
-    const CScript genesisOutputScript = CScript() << ParseHex("044c761271482fb8245dfc2a73fe461cffb6e054aa2c8f76f97fc76b49f0a6a3ed0339689e02a5129608eb14cdb0674e9d5200077309bcbcf18bbd7a6eee16e356") << OP_CHECKSIG;
+    const char* pszTimestamp = "Time flies like an arrow. Fruit flies like a banana.";
+    const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -84,7 +84,7 @@ public:
         strNetworkID = "main";
         const uint256 HASH_GENESIS    = uint256S("0x0000063f1c6458585e8117e505924b49abc2192f2e1e4b2bd41afce197570357");
         const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
-        consensus.nSubsidyHalvingInterval = 420000;
+        consensus.nSubsidyHalvingInterval = 384000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 1;
         consensus.NonceOfHeight = 1;        
@@ -93,27 +93,27 @@ public:
         consensus.BIP66Height = 0;
 
         consensus.powLimit = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
-        consensus.nPowTargetSpacing = 5 * 60;
+        consensus.nPowTargetTimespan = 1 * 24 * 60 * 60; // two weeks
+        consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
 
-        consensus.nMinerConfirmationWindow = 4032; // nPowTargetTimespan / nPowTargetSpacing
-        consensus.nRuleChangeActivationThreshold = 3832; // ~95% of 4032
+        consensus.nMinerConfirmationWindow = 1440; // nPowTargetTimespan / nPowTargetSpacing
+        consensus.nRuleChangeActivationThreshold = 1368; // ~95% of 4032
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 0; // January 1, 1970
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1527782400; // Jun. 1, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1525104000; // Jun. 1, 2018
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 0; // January 1, 1970
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1527782400; // Jun. 1, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1525104000; // Jun. 1, 2018
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 0; // January 1, 1970
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1527782400; // Jun. 1, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1525104000; // Jun. 1, 2018
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000000000fffff");
@@ -130,13 +130,13 @@ public:
         pchMessageStart[0] = 0x90;
         pchMessageStart[1] = 0x1d;
         pchMessageStart[2] = 0xca;
-        pchMessageStart[3] = 0xfe;
-        nDefaultPort = 30333;
+        pchMessageStart[3] = 0xae;
+        nDefaultPort = 25555;
         nPruneAfterHeight = 104832; // about 2 years
 
-        genesis = CreateGenesisBlock(1509526800            /*20171101-170000*/
-                                     , 1080298             /*nonce*/
-                                     , 0x1e0ffff0          /*bits*/
+        genesis = CreateGenesisBlock(1527436800            /*20171101-170000*/
+                                     , 15726193             /*nonce*/
+                                     , 0x1d00ffff          /*bits*/
                                      , 0x20000000          /*version*/
                                      , 50 * COIN           /*subsidy*/);
 
@@ -164,17 +164,17 @@ public:
 
         // Ref: https://en.bitcoin.it/wiki/List_of_address_prefixes
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38); // 'G'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,63); // 'S'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,36); // 'F'
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);// '5' for uncompressed, 'K','L' for compressed
         // BIP32 pubkey
         base58Prefixes[EXT_PUBLIC_KEY] = {4, 136, 178, 30}; // xpub
         // BIP32 private key
         base58Prefixes[EXT_SECRET_KEY] = {4, 136, 173, 228};// xprv
 
-        bech32_hrp = "BGD";
+        bech32_hrp = "IFG";
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.emplace_back("seed.bitgold.bitbaba.com"/*, false*/);
+        vSeeds.emplace_back("47.75.150.191"/*, false*/);
 
         //vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -185,18 +185,18 @@ public:
         checkpointData = {
             {
                 {     0, HASH_GENESIS},
-                {  1008, uint256S("0x00000ff673327dcbfbf65f13a594345bafd6804ad08eac1749939d01989a088d")},
-                {  2016, uint256S("0x000005f3b3f9ebddaf6be241619701d3db03b18b165b076862039075e8ab0751")},
-                {  4032, uint256S("0x00000306e714368fd891f1321fd2bcce806189de9b7801d557da5a4ccbc3965a")},
-                {  8064, uint256S("0x000000beee2315d0432228e365dea0c7324ba0e57a00a227dac5b44952204f79")},
-                { 10080, uint256S("0x000001debe0a25b2e017412977e694a67fede7bc38102d2206f441e0a422925a")},
-                { 12096, uint256S("0x0000006f36a44118ee46ebb313c6684c8a22fbbd626a3802e416983d5486cefe")},
-                { 12186, uint256S("0x000000092fcdc8cde04b50adfefa30e856a2058a2c790a51eaf64bdc40f164b8")},
-                { 23702, uint256S("0x0000000352824f5ab9ca70d865d259370897a5dc544c283c43f1ad895d6e1e95")},
-                { 40320, uint256S("0x031aa72752355e65a8e6ad95fe41b82108d2647909f44cf18f8a80bff7856726")},
-                { 40337, uint256S("0x0000018a686b185de39c3a8838c677573cf454c5aecbcd759c56d5afa4471e3b")},
-                { 40484, uint256S("0x0000001099271412bfe557c1d50c9ab936636eebb89517d3a045937ac63bcb36")},
-                { 40485, uint256S("0x0000000bd32ca0f54806e08dc0825fdb9abf833d96864d1e5d474d78399dac11")},
+                // {  1008, uint256S("0x00000ff673327dcbfbf65f13a594345bafd6804ad08eac1749939d01989a088d")},
+                // {  2016, uint256S("0x000005f3b3f9ebddaf6be241619701d3db03b18b165b076862039075e8ab0751")},
+                // {  4032, uint256S("0x00000306e714368fd891f1321fd2bcce806189de9b7801d557da5a4ccbc3965a")},
+                // {  8064, uint256S("0x000000beee2315d0432228e365dea0c7324ba0e57a00a227dac5b44952204f79")},
+                // { 10080, uint256S("0x000001debe0a25b2e017412977e694a67fede7bc38102d2206f441e0a422925a")},
+                // { 12096, uint256S("0x0000006f36a44118ee46ebb313c6684c8a22fbbd626a3802e416983d5486cefe")},
+                // { 12186, uint256S("0x000000092fcdc8cde04b50adfefa30e856a2058a2c790a51eaf64bdc40f164b8")},
+                // { 23702, uint256S("0x0000000352824f5ab9ca70d865d259370897a5dc544c283c43f1ad895d6e1e95")},
+                // { 40320, uint256S("0x031aa72752355e65a8e6ad95fe41b82108d2647909f44cf18f8a80bff7856726")},
+                // { 40337, uint256S("0x0000018a686b185de39c3a8838c677573cf454c5aecbcd759c56d5afa4471e3b")},
+                // { 40484, uint256S("0x0000001099271412bfe557c1d50c9ab936636eebb89517d3a045937ac63bcb36")},
+                // { 40485, uint256S("0x0000000bd32ca0f54806e08dc0825fdb9abf833d96864d1e5d474d78399dac11")},
             }
         };
 
@@ -490,3 +490,4 @@ void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime,
 {
     globalChainParams->UpdateVersionBitsParameters(d, nStartTime, nTimeout);
 }
+
