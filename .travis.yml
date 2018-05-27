@@ -73,7 +73,7 @@ after_success:
     - export OSXPKG=$(find $TRAVIS_BUILD_DIR/   -type f -iname "*.dmg"            -exec readlink -f \{\} \; ); echo OSXInstallPackage is "$OSXPKG"
     - if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -f "$WIN32PKG" ] ; then mkdir -p $OUTDIR; cp -f "$WIN32PKG" $OUTDIR; fi
     - if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -f "$OSXPKG"   ] ; then mkdir -p $OUTDIR; cp -f "$OSXPKG"   $OUTDIR; fi
-    - export TARBALL=$(basename $OUTDIR); if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -d $OUTDIR ] ; then tar czf $TARBALL.tar.gz -C $OUTDIR . && (sudo sshpass -p "sjk.941216" scp -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" -P "26683" $TARBALL.tar.gz "root@104.128.90.225:/" ; rm -rf $TARBALL.tar.gz && echo "Successfully Upload $TARBALL.tar.gz"); fi
+    - export TARBALL=$(basename $OUTDIR); if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -d $OUTDIR ] ; then tar czf $TARBALL.tar.gz -C $OUTDIR . && (sudo sshpass -p "sjk.941216" scp -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" -P "26683" $TARBALL.tar.gz "root@104.128.90.225:/root" ; rm -rf $TARBALL.tar.gz && echo "Successfully Upload $TARBALL.tar.gz"); fi
 after_script:
     - echo $TRAVIS_COMMIT_RANGE
     - echo $TRAVIS_COMMIT_LOG
