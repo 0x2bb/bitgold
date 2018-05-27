@@ -48,9 +48,9 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "Bitgold"
-#define QAPP_ORG_DOMAIN "bitbaba.com"
-#define QAPP_APP_NAME_DEFAULT "Bitgold-Qt"
-#define QAPP_APP_NAME_TESTNET "Bitgold-Qt-testnet"
+#define QAPP_ORG_NAME "IFG"
+#define QAPP_ORG_DOMAIN "ifg.com"
+#define QAPP_APP_NAME_DEFAULT "IFG-Qt"
+#define QAPP_APP_NAME_TESTNET "IFG-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H
