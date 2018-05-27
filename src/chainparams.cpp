@@ -82,8 +82,8 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        const uint256 HASH_GENESIS    = uint256S("0x0000008fe72d8dce09bedfba5226786efaa9c1fa2d9dd9184a42bae6b42d353b");
-        const uint256 HASH_MERKLEROOT = uint256S("0x52b2455696516c14fde6fb8bf13891f34a49b339b99aa863942e5cd54db71fc1");
+        const uint256 HASH_GENESIS    = uint256S("0x00000920b70663ec68032555f9f7af23a9203ea7b4c4438c7a9d560f1a122535");
+        const uint256 HASH_MERKLEROOT = uint256S("0x7f76ab874881dca6dde95bd6aa3a3e55680f7c80b43990238d71bf2f1b911b46");
         consensus.nSubsidyHalvingInterval = 384000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 1;
@@ -135,12 +135,12 @@ public:
         nPruneAfterHeight = 104832; // about 2 years
 
         genesis = CreateGenesisBlock(1527436800            /*20171101-170000*/
-                                     , 15726193             /*nonce*/
+                                     , 16513301             /*nonce*/
                                      , 0x1d00ffff          /*bits*/
                                      , 0x20000000          /*version*/
                                      , 50 * COIN           /*subsidy*/);
 
-        while(true){// search genesis
+        while(false){// search genesis
             static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
             arith_uint256 hash = UintToArith256(genesis.GetHash());
             arith_uint256 target;
@@ -225,8 +225,8 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        const uint256 HASH_GENESIS    = uint256S("0x7638286a10ad14fc065601355f3aeba6c1ec55469fd928f6d2ae58eb4d975e5f");
-        const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
+        const uint256 HASH_GENESIS    = uint256S("0x00000920b70663ec68032555f9f7af23a9203ea7b4c4438c7a9d560f1a122535");
+        const uint256 HASH_MERKLEROOT = uint256S("0x7f76ab874881dca6dde95bd6aa3a3e55680f7c80b43990238d71bf2f1b911b46");
         consensus.nSubsidyHalvingInterval = 420000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 100000000; // BIP34 has not activated on testnet
@@ -274,12 +274,12 @@ public:
         nPruneAfterHeight = 104832;
 
         genesis = CreateGenesisBlock(1509526800             /*20171101-170000*/
-                                     , 1                    /*nonce*/
+                                     , 16513301                    /*nonce*/
                                      , 0x207fffff           /*bits*/
                                      , 0x20000000           /*version*/
                                      , 50 * COIN            /*subsidy*/);
 
-        while(true){
+        while(false){
             static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
             arith_uint256 hash = UintToArith256(genesis.GetHash());
             arith_uint256 target;
