@@ -130,7 +130,7 @@ public:
         pchMessageStart[0] = 0x90;
         pchMessageStart[1] = 0x1d;
         pchMessageStart[2] = 0xca;
-        pchMessageStart[3] = 0xae;
+        pchMessageStart[3] = 0xfe;
         nDefaultPort = 25555;
         nPruneAfterHeight = 104832; // about 2 years
 
@@ -164,7 +164,7 @@ public:
 
         // Ref: https://en.bitcoin.it/wiki/List_of_address_prefixes
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38); // 'G'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,36); // 'F'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,63); // 'F'
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);// '5' for uncompressed, 'K','L' for compressed
         // BIP32 pubkey
         base58Prefixes[EXT_PUBLIC_KEY] = {4, 136, 178, 30}; // xpub
@@ -207,7 +207,7 @@ public:
         };
 
         chainTxData = ChainTxData{
-            1509526606, // * UNIX timestamp of last known number of transactions, here 20171101-165646
+            1527436800, // * UNIX timestamp of last known number of transactions, here 20171101-165646
             1,          // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             3.5         // * estimated number of transactions per second after that timestamp
@@ -349,8 +349,8 @@ class CRegTestParams : public CChainParams {
 public:
     CRegTestParams() {
         strNetworkID = "regtest";
-        const uint256 HASH_GENESIS    = uint256S("0x7638286a10ad14fc065601355f3aeba6c1ec55469fd928f6d2ae58eb4d975e5f");
-        const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
+        const uint256 HASH_GENESIS    = uint256S("0x00000920b70663ec68032555f9f7af23a9203ea7b4c4438c7a9d560f1a122535");
+        const uint256 HASH_MERKLEROOT = uint256S("0x7f76ab874881dca6dde95bd6aa3a3e55680f7c80b43990238d71bf2f1b911b46");
         consensus.nSubsidyHalvingInterval = 420000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 100000000; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests)
@@ -395,12 +395,11 @@ public:
         nDefaultPort = 40444;
         nPruneAfterHeight = 104832;
 
-        genesis = CreateGenesisBlock(1509526800             /*20171101-170000*/
-                                     , 1                    /*nonce*/
-                                     , 0x207fffff           /*bits*/
-                                     , 0x20000000           /*version*/
-                                     , 50 * COIN            /*subsidy*/);
-
+        genesis = CreateGenesisBlock(1527436800            /*20171101-170000*/
+                                     , 16513301             /*nonce*/
+                                     , 0x1d00ffff          /*bits*/
+                                     , 0x20000000          /*version*/
+                                     , 50 * COIN           /*subsidy*/);
         while(false){
             static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
             arith_uint256 hash = UintToArith256(genesis.GetHash());
