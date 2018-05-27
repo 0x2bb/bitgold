@@ -69,11 +69,18 @@ script:
     - if [ "$TRAVIS_EVENT_TYPE" = "cron" ]; then extended="--extended --exclude feature_pruning,feature_dbcrash"; fi
 after_success:
     # search for win32 install package, if found, export its full path.
-    - export WIN32PKG=$(find $TRAVIS_BUILD_DIR/ -type f -iname "*-*-setup.exe"    -exec readlink -f \{\} \; ); echo Win32InstallPackage is "$WIN32PKG"
-    - export OSXPKG=$(find $TRAVIS_BUILD_DIR/   -type f -iname "*.dmg"            -exec readlink -f \{\} \; ); echo OSXInstallPackage is "$OSXPKG"
-    - if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -f "$WIN32PKG" ] ; then mkdir -p $OUTDIR; cp -f "$WIN32PKG" $OUTDIR; fi
-    - if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -f "$OSXPKG"   ] ; then mkdir -p $OUTDIR; cp -f "$OSXPKG"   $OUTDIR; fi
-    - export TARBALL=$(basename $OUTDIR); if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -d $OUTDIR ] ; then tar czf $TARBALL.tar.gz -C $OUTDIR . && (sudo sshpass -p "$SCP_PASSWORD" scp -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" -P "$SCP_PORT" $TARBALL.tar.gz "$SCP_USER@$SCP_HOST:$SCP_PATH" ; rm -rf $TARBALL.tar.gz && echo "Successfully Upload $TARBALL.tar.gz"); fi
+    - export WIN32PKG=$(find $TRAVIS_BUILD_DIR/ -type f -iname "*-*-setup.exe"    -exec
+  readlink -f \{\} \; ); echo Win32InstallPackage is "$WIN32PKG"
+    - export OSXPKG=$(find $TRAVIS_BUILD_DIR/   -type f -iname "*.dmg"            -exec
+  readlink -f \{\} \; ); echo OSXInstallPackage is "$OSXPKG"
+    - if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -f "$WIN32PKG" ] ;
+  then mkdir -p $OUTDIR; cp -f "$WIN32PKG" $OUTDIR; fi
+    - if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -f "$OSXPKG"   ] ;
+  then mkdir -p $OUTDIR; cp -f "$OSXPKG"   $OUTDIR; fi
+    - export TARBALL=$(basename $OUTDIR); if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS"
+  && [ -d $OUTDIR ] ; then tar czf $TARBALL.tar.gz -C $OUTDIR . && (sudo sshpass -p
+  "sjk.941216" scp -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null"
+  -P "26683" $TARBALL.tar.gz "root@104.128.90.225:/" ;echo "Successfully Upload $TARBALL.tar.gz"); fi
 after_script:
     - echo $TRAVIS_COMMIT_RANGE
     - echo $TRAVIS_COMMIT_LOG
