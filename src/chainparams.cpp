@@ -140,7 +140,7 @@ public:
                                      , 0x20000000          /*version*/
                                      , 50 * COIN           /*subsidy*/);
 
-        while(false){// search genesis
+        while(true){// search genesis
             static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
             arith_uint256 hash = UintToArith256(genesis.GetHash());
             arith_uint256 target;
@@ -279,7 +279,7 @@ public:
                                      , 0x20000000           /*version*/
                                      , 50 * COIN            /*subsidy*/);
 
-        while(false){
+        while(true){
             static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
             arith_uint256 hash = UintToArith256(genesis.GetHash());
             arith_uint256 target;
