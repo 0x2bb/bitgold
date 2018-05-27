@@ -82,8 +82,8 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        const uint256 HASH_GENESIS    = uint256S("0x0000063f1c6458585e8117e505924b49abc2192f2e1e4b2bd41afce197570357");
-        const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
+        const uint256 HASH_GENESIS    = uint256S("0x0000008fe72d8dce09bedfba5226786efaa9c1fa2d9dd9184a42bae6b42d353b");
+        const uint256 HASH_MERKLEROOT = uint256S("0x52b2455696516c14fde6fb8bf13891f34a49b339b99aa863942e5cd54db71fc1");
         consensus.nSubsidyHalvingInterval = 384000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 1;
@@ -490,4 +490,3 @@ void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime,
 {
     globalChainParams->UpdateVersionBitsParameters(d, nStartTime, nTimeout);
 }
-
