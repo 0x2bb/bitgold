@@ -58,7 +58,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     const char* pszTimestamp = "Time flies like an arrow. Fruit flies like a banana.";
-    const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+    const CScript genesisOutputScript = CScript() << ParseHex("044c761271482fb8245dfc2a73fe461cffb6e054aa2c8f76f97fc76b49f0a6a3ed0339689e02a5129608eb14cdb0674e9d5200077309bcbcf18bbd7a6eee16e356") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -82,8 +82,8 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        const uint256 HASH_GENESIS    = uint256S("0x00000920b70663ec68032555f9f7af23a9203ea7b4c4438c7a9d560f1a122535");
-        const uint256 HASH_MERKLEROOT = uint256S("0x7f76ab874881dca6dde95bd6aa3a3e55680f7c80b43990238d71bf2f1b911b46");
+        const uint256 HASH_GENESIS    = uint256S("0x0000063f1c6458585e8117e505924b49abc2192f2e1e4b2bd41afce197570357");
+        const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
         consensus.nSubsidyHalvingInterval = 420000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 1;
@@ -134,13 +134,13 @@ public:
         nDefaultPort = 30333;
         nPruneAfterHeight = 104832; // about 2 years
 
-        genesis = CreateGenesisBlock(1527436800            /*20171101-170000*/
-                                     , 16513301             /*nonce*/
-                                     , 0x1d00ffff          /*bits*/
+        genesis = CreateGenesisBlock(1527350400            /*20171101-170000*/
+                                     , 0             /*nonce*/
+                                     , 0x1e0ffff0          /*bits*/
                                      , 0x20000000          /*version*/
                                      , 50 * COIN           /*subsidy*/);
 
-        while(false){// search genesis
+        while(true){// search genesis
             static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
             arith_uint256 hash = UintToArith256(genesis.GetHash());
             arith_uint256 target;
@@ -207,7 +207,7 @@ public:
         };
 
         chainTxData = ChainTxData{
-            1527436800, // * UNIX timestamp of last known number of transactions, here 20171101-165646
+            1509526606, // * UNIX timestamp of last known number of transactions, here 20171101-165646
             1,          // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             3.5         // * estimated number of transactions per second after that timestamp
@@ -225,8 +225,8 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        const uint256 HASH_GENESIS    = uint256S("0x00000920b70663ec68032555f9f7af23a9203ea7b4c4438c7a9d560f1a122535");
-        const uint256 HASH_MERKLEROOT = uint256S("0x7f76ab874881dca6dde95bd6aa3a3e55680f7c80b43990238d71bf2f1b911b46");
+        const uint256 HASH_GENESIS    = uint256S("0x7638286a10ad14fc065601355f3aeba6c1ec55469fd928f6d2ae58eb4d975e5f");
+        const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
         consensus.nSubsidyHalvingInterval = 420000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 100000000; // BIP34 has not activated on testnet
@@ -273,11 +273,11 @@ public:
         nDefaultPort = 40333;
         nPruneAfterHeight = 104832;
 
-        genesis = CreateGenesisBlock(1527436800            /*20171101-170000*/
-                                     , 16513301             /*nonce*/
-                                     , 0x1d00ffff          /*bits*/
-                                     , 0x20000000          /*version*/
-                                     , 50 * COIN           /*subsidy*/);
+        genesis = CreateGenesisBlock(1509526800             /*20171101-170000*/
+                                     , 1                    /*nonce*/
+                                     , 0x207fffff           /*bits*/
+                                     , 0x20000000           /*version*/
+                                     , 50 * COIN            /*subsidy*/);
 
         while(false){
             static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
@@ -349,8 +349,8 @@ class CRegTestParams : public CChainParams {
 public:
     CRegTestParams() {
         strNetworkID = "regtest";
-        const uint256 HASH_GENESIS    = uint256S("0x00000920b70663ec68032555f9f7af23a9203ea7b4c4438c7a9d560f1a122535");
-        const uint256 HASH_MERKLEROOT = uint256S("0x7f76ab874881dca6dde95bd6aa3a3e55680f7c80b43990238d71bf2f1b911b46");
+        const uint256 HASH_GENESIS    = uint256S("0x5fcdf13a912cf23445226c4b42ebd9760479979098890757983f1741fb1a79f0");
+        const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
         consensus.nSubsidyHalvingInterval = 420000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 100000000; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests)
@@ -395,9 +395,9 @@ public:
         nDefaultPort = 40444;
         nPruneAfterHeight = 104832;
 
-        genesis = CreateGenesisBlock(1527436800            /*20171101-170000*/
-                                     , 16513301             /*nonce*/
-                                     , 0x1d00ffff          /*bits*/
+        genesis = CreateGenesisBlock(1509526800            /*20171101-170000*/
+                                     , 2                   /*nonce*/
+                                     , 0x207fffff          /*bits*/
                                      , 0x20000000          /*version*/
                                      , 50 * COIN           /*subsidy*/);
 
