@@ -148,8 +148,8 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no bitgold: URI
-    if(!uri.isValid() || uri.scheme() != QString("bitgold"))
+    // return if URI is not valid or is no ifg: URI
+    if(!uri.isValid() || uri.scheme() != QString("ifg"))
         return false;
 
     SendCoinsRecipient rv;
@@ -209,13 +209,13 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 
 bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert bitgold:// to bitgold:
+    // Convert ifg:// to ifg:
     //
-    //    Cannot handle this later, because bitgold:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because ifg:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("bitgold://", Qt::CaseInsensitive))
+    if(uri.startsWith("ifg://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 10, "bitgold:");
+        uri.replace(0, 10, "ifg:");
     }
     QUrl uriInstance(uri);
     return parseBitcoinURI(uriInstance, out);
@@ -223,7 +223,7 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("bitgold:%1").arg(info.address);
+    QString ret = QString("ifg:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
