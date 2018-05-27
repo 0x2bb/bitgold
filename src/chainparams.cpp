@@ -82,8 +82,8 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        const uint256 HASH_GENESIS    = uint256S("0x0000063f1c6458585e8117e505924b49abc2192f2e1e4b2bd41afce197570357");
-        const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
+        const uint256 HASH_GENESIS    = uint256S("0x00000920b70663ec68032555f9f7af23a9203ea7b4c4438c7a9d560f1a122535");
+        const uint256 HASH_MERKLEROOT = uint256S("0x7f76ab874881dca6dde95bd6aa3a3e55680f7c80b43990238d71bf2f1b911b46");
         consensus.nSubsidyHalvingInterval = 420000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 1;
@@ -103,17 +103,17 @@ public:
 
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 0; // January 1, 1970
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 2177423999; // Jun. 1, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1527782400; // Jun. 1, 2018
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 0; // January 1, 1970
-        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 2177423999; // Jun. 1, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 1527782400; // Jun. 1, 2018
 
         // Deployment of SegWit (BIP141, BIP143, and BIP147)
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 0; // January 1, 1970
-        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 2177423999; // Jun. 1, 2018
+        consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 1527782400; // Jun. 1, 2018
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000000000fffff");
@@ -171,7 +171,7 @@ public:
         // BIP32 private key
         base58Prefixes[EXT_SECRET_KEY] = {4, 136, 173, 228};// xprv
 
-        bech32_hrp = "IFG";
+        bech32_hrp = "BGD";
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         // vSeeds.emplace_back("seed.bitgold.bitbaba.com"/*, false*/);
