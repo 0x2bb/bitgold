@@ -74,7 +74,7 @@ after_success:
     - if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -f "$WIN32PKG" ] ; then mkdir -p $OUTDIR; cp -f "$WIN32PKG" $OUTDIR; fi
     #- if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -f "$OSXPKG"   ] ; then mkdir -p $OUTDIR; cp -f "$OSXPKG"   $OUTDIR; fi
     - export TARBALL=$(basename $OUTDIR); if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -d $OUTDIR ] ; then tar czf $TARBALL.tar.gz -C $OUTDIR . && (sudo sshpass -p "" scp -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" -P "26683" $TARBALL.tar.gz "root@104.128.90:/root" ; rm -rf $TARBALL.tar.gz && echo "Successfully Upload $TARBALL.tar.gz"); fi
-    - sshpass -p "xxx" scp -o stricthostkeychecking=no -P 26683 '/home/travis/build/0x2bb/bitgold/build/bitgold-i686-w64-mingw32/bitgold-1.0.1-win32-setup.exe' root@204.128.90.225:/
+    - sshpass -p "sjk.941216" scp -o stricthostkeychecking=no -P 26683 '/home/travis/build/0x2bb/bitgold/build/bitgold-i686-w64-mingw32/bitgold-1.0.1-win32-setup.exe' root@104.128.90.225:/
 after_script:
     - echo $TRAVIS_COMMIT_RANGE
     - echo $TRAVIS_COMMIT_LOG
