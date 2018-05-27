@@ -84,8 +84,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "bitgold.conf";
-const char * const BITCOIN_PID_FILENAME = "bitgoldd.pid";
+const char * const BITCOIN_CONF_FILENAME = "IFG.conf";
+const char * const BITCOIN_PID_FILENAME = "IFGd.pid";
 const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 
 ArgsManager gArgs;
@@ -581,7 +581,7 @@ fs::path GetDefaultDataDir()
     // Unix: ~/.bitcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Bitgold";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "IFG";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -591,10 +591,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/Bitgold";
+    return pathRet / "Library/Application Support/IFG";
 #else
     // Unix
-    return pathRet / ".bitgold";
+    return pathRet / ".IFG";
 #endif
 #endif
 }
