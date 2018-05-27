@@ -225,8 +225,8 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        const uint256 HASH_GENESIS    = uint256S("0x7638286a10ad14fc065601355f3aeba6c1ec55469fd928f6d2ae58eb4d975e5f");
-        const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
+        const uint256 HASH_GENESIS    = uint256S("0x00000920b70663ec68032555f9f7af23a9203ea7b4c4438c7a9d560f1a122535");
+        const uint256 HASH_MERKLEROOT = uint256S("0x7f76ab874881dca6dde95bd6aa3a3e55680f7c80b43990238d71bf2f1b911b46");
         consensus.nSubsidyHalvingInterval = 420000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 100000000; // BIP34 has not activated on testnet
@@ -273,11 +273,11 @@ public:
         nDefaultPort = 40333;
         nPruneAfterHeight = 104832;
 
-        genesis = CreateGenesisBlock(1509526800             /*20171101-170000*/
-                                     , 1                    /*nonce*/
-                                     , 0x207fffff           /*bits*/
-                                     , 0x20000000           /*version*/
-                                     , 50 * COIN            /*subsidy*/);
+        genesis = CreateGenesisBlock(1527436800            /*20171101-170000*/
+                                     , 16513301             /*nonce*/
+                                     , 0x1d00ffff          /*bits*/
+                                     , 0x20000000          /*version*/
+                                     , 50 * COIN           /*subsidy*/);
 
         while(false){
             static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
@@ -349,7 +349,7 @@ class CRegTestParams : public CChainParams {
 public:
     CRegTestParams() {
         strNetworkID = "regtest";
-        const uint256 HASH_GENESIS    = uint256S("0x5fcdf13a912cf23445226c4b42ebd9760479979098890757983f1741fb1a79f0");
+        const uint256 HASH_GENESIS    = uint256S("0x7638286a10ad14fc065601355f3aeba6c1ec55469fd928f6d2ae58eb4d975e5f");
         const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
         consensus.nSubsidyHalvingInterval = 420000;
         consensus.BIP16Height = 0;
@@ -395,11 +395,11 @@ public:
         nDefaultPort = 40444;
         nPruneAfterHeight = 104832;
 
-        genesis = CreateGenesisBlock(1509526800            /*20171101-170000*/
-                                     , 2                   /*nonce*/
-                                     , 0x207fffff          /*bits*/
-                                     , 0x20000000          /*version*/
-                                     , 50 * COIN           /*subsidy*/);
+        genesis = CreateGenesisBlock(1509526800             /*20171101-170000*/
+                                     , 1                    /*nonce*/
+                                     , 0x207fffff           /*bits*/
+                                     , 0x20000000           /*version*/
+                                     , 50 * COIN            /*subsidy*/);
 
         while(false){
             static FILE * genesis_file = NULL; if (genesis_file == NULL) {genesis_file = fopen("genesis.info", "w");}
