@@ -225,8 +225,8 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-        const uint256 HASH_GENESIS    = uint256S("0x00000920b70663ec68032555f9f7af23a9203ea7b4c4438c7a9d560f1a122535");
-        const uint256 HASH_MERKLEROOT = uint256S("0x7f76ab874881dca6dde95bd6aa3a3e55680f7c80b43990238d71bf2f1b911b46");
+        const uint256 HASH_GENESIS    = uint256S("0x7638286a10ad14fc065601355f3aeba6c1ec55469fd928f6d2ae58eb4d975e5f");
+        const uint256 HASH_MERKLEROOT = uint256S("0xa1820174d76bb7e15e5eaa357907d1a07c1752d39a08346097bfeff28d42ddd8");
         consensus.nSubsidyHalvingInterval = 420000;
         consensus.BIP16Height = 0;
         consensus.BIP34Height = 100000000; // BIP34 has not activated on testnet
@@ -274,7 +274,7 @@ public:
         nPruneAfterHeight = 104832;
 
         genesis = CreateGenesisBlock(1509526800             /*20171101-170000*/
-                                     , 16513301                    /*nonce*/
+                                     , 1                    /*nonce*/
                                      , 0x207fffff           /*bits*/
                                      , 0x20000000           /*version*/
                                      , 50 * COIN            /*subsidy*/);
